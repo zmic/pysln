@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <MODULE_BASENAME>{0}</MODULE_BASENAME>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetName>$(MODULE_BASENAME)</TargetName>  
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>MODULE_NAME=$(TargetName);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>  <ItemGroup>
+    <BuildMacro Include="MODULE_BASENAME">
+      <Value>$(MODULE_BASENAME)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <python26_32>c:\python26-32</python26_32>
+    <python26_64>c:\python26</python26_64>
+    <python27_32>c:\python27-32</python27_32>
+    <python27_64>c:\python27</python27_64>
+    <python30_32>c:\python30-32</python30_32>
+    <python30_64>c:\python30</python30_64>
+    <python31_32>c:\python31-32</python31_32>
+    <python31_64>c:\python31</python31_64>
+    <python32_32>c:\python32-32</python32_32>
+    <python32_64>c:\python32</python32_64>
+    <python33_32>c:\python33-32</python33_32>
+    <python33_64>c:\python33</python33_64>
+    <python34_32>c:\python34-32</python34_32>
+    <python34_64>c:\python34</python34_64>
+    <python35_32>c:\python35-32</python35_32>
+    <python35_64>c:\python35</python35_64>
+    <python_version>$(Configuration.Substring($([MSBuild]::Subtract($(Configuration.Length), 2))))</python_version>
+    <python_install_folder Condition="$(python_version)=='26' and $(Platform)=='Win32'">$(python26_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='26' and $(Platform)=='x64'">$(python26_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='27' and $(Platform)=='Win32'">$(python27_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='27' and $(Platform)=='x64'">$(python27_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='30' and $(Platform)=='Win32'">$(python30_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='30' and $(Platform)=='x64'">$(python30_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='31' and $(Platform)=='Win32'">$(python31_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='31' and $(Platform)=='x64'">$(python31_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='32' and $(Platform)=='Win32'">$(python32_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='32' and $(Platform)=='x64'">$(python32_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='33' and $(Platform)=='Win32'">$(python33_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='33' and $(Platform)=='x64'">$(python33_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='34' and $(Platform)=='Win32'">$(python34_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='34' and $(Platform)=='x64'">$(python34_64)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='35' and $(Platform)=='Win32'">$(python35_32)</python_install_folder>
+    <python_install_folder Condition="$(python_version)=='35' and $(Platform)=='x64'">$(python35_64)</python_install_folder>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetExt>.pyd</TargetExt>
+    <IncludePath>$(python_install_folder)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(python_install_folder)\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+</Project>
