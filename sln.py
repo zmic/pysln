@@ -94,14 +94,10 @@ class project(object):
         link_incremental = "\r\n"
         t1 = '''  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-{0}|{1}'">
         <LinkIncremental>true</LinkIncremental>
-        <OutDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\</OutDir>
-        <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
       </PropertyGroup>        
     '''
         t2 = '''  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-{0}|{1}'">
         <LinkIncremental>false</LinkIncremental>
-        <OutDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\</OutDir>
-        <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
       </PropertyGroup>
     '''
         for p in project_configs.iterate():

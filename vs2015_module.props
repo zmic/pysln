@@ -2,18 +2,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <MODULE_BASENAME>{0}</MODULE_BASENAME>
+    <EXTENSION_BASENAME>{0}</EXTENSION_BASENAME>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName>$(MODULE_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>  
+    <TargetName>$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>  
+    <OutDir>$(SolutionDir)..\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>    
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <PreprocessorDefinitions>MODULE_NAME=$(TargetName);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>  <ItemGroup>
-    <BuildMacro Include="MODULE_BASENAME">
-      <Value>$(MODULE_BASENAME)</Value>
+    <BuildMacro Include="EXTENSION_BASENAME">
+      <Value>$(EXTENSION_BASENAME)</Value>
     </BuildMacro>
-  </ItemGroup>
+  </ItemGroup>      
 </Project>

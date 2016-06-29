@@ -3,22 +3,22 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EXTENSION_BASENAME>{0}</EXTENSION_BASENAME>
-    <EXTENSION_FULLNAME Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</EXTENSION_FULLNAME>
-    <EXTENSION_FULLNAME Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</EXTENSION_FULLNAME>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName>../../$(EXTENSION_FULLNAME)</TargetName>
+    <TargetName>$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>  
+    <TargetName Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>
+    <TargetName Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</TargetName>    
+    <OutDir>$(SolutionDir)..\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>    
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>MODULE_NAME=$(EXTENSION_FULLNAME);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MODULE_NAME=$(TargetName);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>  <ItemGroup>
     <BuildMacro Include="EXTENSION_BASENAME">
       <Value>$(EXTENSION_BASENAME)</Value>
     </BuildMacro>
-    <BuildMacro Include="EXTENSION_FULLNAME">
-      <Value>$(EXTENSION_FULLNAME)</Value>
-    </BuildMacro>
-  </ItemGroup>
+  </ItemGroup>      
 </Project>
+
