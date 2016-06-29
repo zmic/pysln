@@ -5,10 +5,9 @@
     <EXTENSION_BASENAME>{0}</EXTENSION_BASENAME>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName>$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>  
     <TargetName Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>
     <TargetName Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</TargetName>    
-    <OutDir>$(SolutionDir)..\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\</OutDir>
     <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>    
   </PropertyGroup>
   <ItemDefinitionGroup>

@@ -6,7 +6,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetName>$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>  
-    <OutDir>$(SolutionDir)..\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\</OutDir>
     <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>    
   </PropertyGroup>
   <ItemDefinitionGroup>
