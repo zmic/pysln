@@ -359,7 +359,7 @@ EndProject
                 file(folder + os.sep + project_name + '.vcxproj', 'wb').write(proj)
                 filters = p.create_filters(self.uuid)
                 file(folder + os.sep + project_name + '.vcxproj.filters', 'wb').write(filters)
-                prop = file('vs2015_module.props', 'rb').read().format(p.module_name)  
+                prop = file(vs_version + '_module.props', 'rb').read().format(p.module_name)  
                 file(folder + os.sep + project_name + '.props', 'wb').write(prop)
 
             prop = file('vs2015_python.props', 'rb').read()

@@ -5,7 +5,7 @@
     <MODULE_BASENAME>{0}</MODULE_BASENAME>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName>$(MODULE_BASENAME)</TargetName>  
+    <TargetName>$(MODULE_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>  
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

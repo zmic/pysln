@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <EXTENSION_BASENAME>{0}</EXTENSION_BASENAME>
+    <EXTENSION_FULLNAME Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</EXTENSION_FULLNAME>
+    <EXTENSION_FULLNAME Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</EXTENSION_FULLNAME>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetName>../../$(EXTENSION_FULLNAME)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>MODULE_NAME=$(EXTENSION_FULLNAME);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>  <ItemGroup>
+    <BuildMacro Include="EXTENSION_BASENAME">
+      <Value>$(EXTENSION_BASENAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EXTENSION_FULLNAME">
+      <Value>$(EXTENSION_FULLNAME)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
