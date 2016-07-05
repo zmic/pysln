@@ -1,0 +1,12 @@
+.vs/
+build/
+*.opendb
+*.db
+ipch/
+*.exp
+*.iobj
+*.ipdb
+*.lib
+*.pdb
+*.pyd
+*.sdf

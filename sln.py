@@ -331,6 +331,9 @@ EndProject
         folder = root_folder
         os.makedirs(folder)
         os.makedirs(folder + '/src')
+
+        gitignore = file('gitignore_template.txt', 'rb').read()                
+        file(folder + '/.gitignore', 'wb').write(gitignore)        
         main_cpp = file('main.cpp', 'rb').read()        
         include_cpp = file('include.cpp', 'rb').read()        
         include_h = file('include.h', 'rb').read()        
