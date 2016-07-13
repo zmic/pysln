@@ -3,10 +3,11 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EXTENSION_BASENAME>{0}</EXTENSION_BASENAME>
+    <EXTENSION_FULLNAME Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</EXTENSION_FULLNAME>
+    <EXTENSION_FULLNAME Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</EXTENSION_FULLNAME>        
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</TargetName>
-    <TargetName Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</TargetName>    
+    <TargetName>$(EXTENSION_FULLNAME)</TargetName>  
     <OutDir>$(SolutionDir)..\{0}\</OutDir>
     <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>    
   </PropertyGroup>
@@ -18,6 +19,9 @@
     <BuildMacro Include="EXTENSION_BASENAME">
       <Value>$(EXTENSION_BASENAME)</Value>
     </BuildMacro>
+    <BuildMacro Include="EXTENSION_FULLNAME">
+      <Value>$(EXTENSION_FULLNAME)</Value>
+    </BuildMacro>      
   </ItemGroup>      
 </Project>
 

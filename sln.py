@@ -332,20 +332,20 @@ EndProject
         os.makedirs(folder)
         os.makedirs(folder + '/src')
 
-        gitignore = file('gitignore_template.txt', 'rb').read()                
-        file(folder + '/.gitignore', 'wb').write(gitignore)        
-        main_cpp = file('main.cpp', 'rb').read()        
-        include_cpp = file('include.cpp', 'rb').read()        
-        include_h = file('include.h', 'rb').read()        
-        file(folder + '/src/main.cpp', 'wb').write(main_cpp)
-        file(folder + '/src/include.cpp', 'wb').write(include_cpp)
-        file(folder + '/src/include.h', 'wb').write(include_h)
+        gitignore = open('gitignore_template.txt', 'rb').read()                
+        open(folder + '/.gitignore', 'wb').write(gitignore)        
+        main_cpp = open('main.cpp', 'rb').read()        
+        include_cpp = open('include.cpp', 'rb').read()        
+        include_h = open('include.h', 'rb').read()        
+        open(folder + '/src/main.cpp', 'wb').write(main_cpp)
+        open(folder + '/src/include.cpp', 'wb').write(include_cpp)
+        open(folder + '/src/include.h', 'wb').write(include_h)
 
         for vs_version in ['vs2010', 'vs2015']:
             folder = root_folder + '/' + vs_version
             os.makedirs(folder)
             sln = self.create_sln(vs_version)
-            file(folder + os.sep + self.name + '.sln', 'wb').write(sln)
+            open(folder + os.sep + self.name + '.sln', 'wb').write(sln.encode('utf-8'))
             
             if vs_version == 'vs2015':
                 platform_toolset = 'v140'
@@ -355,14 +355,14 @@ EndProject
             for p in self.projects:    
                 project_name = p.name
                 proj = p.create_project(self.configs, platform_toolset)
-                file(folder + os.sep + project_name + '.vcxproj', 'wb').write(proj)
+                open(folder + os.sep + project_name + '.vcxproj', 'wb').write(proj.encode('utf-8'))
                 filters = p.create_filters(self.uuid)
-                file(folder + os.sep + project_name + '.vcxproj.filters', 'wb').write(filters)
-                prop = file(vs_version + '_module.props', 'rb').read().format(p.module_name)  
-                file(folder + os.sep + project_name + '.props', 'wb').write(prop)
+                open(folder + os.sep + project_name + '.vcxproj.filters', 'wb').write(filters.encode('utf-8'))
+                prop = open(vs_version + '_module.props', 'rb').read().decode('utf-8').format(p.module_name)  
+                open(folder + os.sep + project_name + '.props', 'wb').write(prop.encode('utf-8'))
 
-            prop = file('vs2015_python.props', 'rb').read()
-            file(folder + os.sep + 'python.props', 'wb').write(prop)
+            prop = open('vs2015_python.props', 'rb').read()
+            open(folder + os.sep + 'python.props', 'wb').write(prop)
     
 ##################################################################################################################################    
           
