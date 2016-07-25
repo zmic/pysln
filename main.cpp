@@ -42,7 +42,7 @@ INIT_FUNCTION()
     //_CrtSetReportFile( _CRT_WARN, _CRTDBG_FILE_STDERR );
 #endif
 #if !UNDERSCORE_D
-    PyErr_Warn(PyExc_RuntimeWarning, "This is the debug build of "MODULE_STRING".pyd");
+    PyErr_Warn(PyExc_RuntimeWarning, "This is the debug build of " MODULE_STRING ".pyd");
 #endif
 #endif
     PyObject * module = PyModule_Create(&moduledef);
