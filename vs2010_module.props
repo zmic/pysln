@@ -7,7 +7,7 @@
     <EXTENSION_FULLNAME Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</EXTENSION_FULLNAME>        
   </PropertyGroup>
   <PropertyGroup>
-    <TargetName>$(EXTENSION_FULLNAME)</TargetName>  
+    <TargetName>$(EXTENSION_FULLNAME)$(UNDERSCORE_D)</TargetName>  
     <OutDir>$(SolutionDir)..\{0}\</OutDir>
     <IntDir>$(SolutionDir)build\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>    
   </PropertyGroup>

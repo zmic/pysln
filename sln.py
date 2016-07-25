@@ -42,6 +42,9 @@ class project(object):
         </ProjectConfiguration>
     '''   
         for p in project_configs.iterate():
+            project_configurations += t.format("Debug_d",p,"Win32")
+            project_configurations += t.format("Debug_d",p,"x64")    
+        for p in project_configs.iterate():
             project_configurations += t.format("Debug",p,"Win32")
             project_configurations += t.format("Debug",p,"x64")
         for p in project_configs.iterate():
@@ -49,7 +52,7 @@ class project(object):
             project_configurations += t.format("Release",p,"x64")
            
         project_configurations2 = "\r\n"           
-        t1 = '''  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-{0}|{1}'" Label="Configuration">
+        t1 = '''  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug{3}-{0}|{1}'" Label="Configuration">
         <ConfigurationType>DynamicLibrary</ConfigurationType>
         <UseDebugLibraries>true</UseDebugLibraries>
         <PlatformToolset>{2}</PlatformToolset>
@@ -65,11 +68,15 @@ class project(object):
       </PropertyGroup>
     '''  
         for p in project_configs.iterate():
-            project_configurations2 += t1.format(p,"Win32",platform_toolset)
+            project_configurations2 += t1.format(p,"Win32",platform_toolset, "_d")
+        for p in project_configs.iterate():
+            project_configurations2 += t1.format(p,"Win32",platform_toolset, "")
         for p in project_configs.iterate():
             project_configurations2 += t2.format(p,"Win32",platform_toolset)
         for p in project_configs.iterate():
-            project_configurations2 += t1.format(p,"x64",platform_toolset)
+            project_configurations2 += t1.format(p,"x64",platform_toolset, "_d")
+        for p in project_configs.iterate():
+            project_configurations2 += t1.format(p,"x64",platform_toolset, "")
         for p in project_configs.iterate():
             project_configurations2 += t2.format(p,"x64",platform_toolset)
       
@@ -82,9 +89,13 @@ class project(object):
       </ImportGroup>
     '''  
         for p in project_configs.iterate():
+            property_sheets += t.format(p,"Win32", "Debug_d", project_name)
+        for p in project_configs.iterate():
             property_sheets += t.format(p,"Win32", "Debug", project_name)
         for p in project_configs.iterate():
             property_sheets += t.format(p,"Win32", "Release", project_name)
+        for p in project_configs.iterate():
+            property_sheets += t.format(p,"x64", "Debug_d", project_name)
         for p in project_configs.iterate():
             property_sheets += t.format(p,"x64", "Debug", project_name)
         for p in project_configs.iterate():
@@ -92,7 +103,7 @@ class project(object):
             
                     
         link_incremental = "\r\n"
-        t1 = '''  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-{0}|{1}'">
+        t1 = '''  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug{2}-{0}|{1}'">
         <LinkIncremental>true</LinkIncremental>
       </PropertyGroup>        
     '''
@@ -101,16 +112,20 @@ class project(object):
       </PropertyGroup>
     '''
         for p in project_configs.iterate():
-            link_incremental += t1.format(p,"Win32")
+            link_incremental += t1.format(p,"Win32", "_d")
         for p in project_configs.iterate():
-            link_incremental += t1.format(p,"x64")
+            link_incremental += t1.format(p,"x64", "_d")    
+        for p in project_configs.iterate():
+            link_incremental += t1.format(p,"Win32", "")
+        for p in project_configs.iterate():
+            link_incremental += t1.format(p,"x64", "")
         for p in project_configs.iterate():
             link_incremental += t2.format(p,"Win32")
         for p in project_configs.iterate():
             link_incremental += t2.format(p,"x64")
 
             
-        t1 = '''  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-{0}|Win32'">
+        t1 = '''  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug{1}-{0}|Win32'">
         <ClCompile>
           <PrecompiledHeader>
           </PrecompiledHeader>
@@ -127,7 +142,7 @@ class project(object):
       </ItemDefinitionGroup>
     '''
 
-        t2 = '''  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-{0}|x64'">
+        t2 = '''  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug{1}-{0}|x64'">
         <ClCompile>
           <PrecompiledHeader>
           </PrecompiledHeader>
@@ -188,9 +203,13 @@ class project(object):
 
         compile_options = "\r\n"
         for p in project_configs.iterate():
-            compile_options += t1.format(p)
+            compile_options += t1.format(p, "_d")
         for p in project_configs.iterate():
-            compile_options += t2.format(p)
+            compile_options += t2.format(p, "_d")        
+        for p in project_configs.iterate():
+            compile_options += t1.format(p, "")
+        for p in project_configs.iterate():
+            compile_options += t2.format(p, "")
         for p in project_configs.iterate():
             compile_options += t3.format(p)
         for p in project_configs.iterate():
@@ -203,6 +222,9 @@ class project(object):
     def create_source_files(self, project_configs):    
         precompiled = "\r\n"
         t1 = '''    <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='{0}-{1}|{2}'">Create</PrecompiledHeader>\r\n'''
+        for p in project_configs.iterate():
+            precompiled += t1.format('Debug_d', p, 'Win32')    
+            precompiled += t1.format('Release_d', p, 'Win32')    
         for p in project_configs.iterate():
             precompiled += t1.format('Debug', p, 'Win32')    
             precompiled += t1.format('Release', p, 'Win32')    
@@ -304,6 +326,9 @@ EndProject
             
         presolution = '\r\n'
         for p in self.configs.iterate():
+            presolution += "\t\tDebug_d-{0}|x64 = Debug_d-{0}|x64\r\n".format(p)
+            presolution += "\t\tDebug_d-{0}|x86 = Debug_d-{0}|x86\r\n".format(p)        
+        for p in self.configs.iterate():
             presolution += "\t\tDebug-{0}|x64 = Debug-{0}|x64\r\n".format(p)
             presolution += "\t\tDebug-{0}|x86 = Debug-{0}|x86\r\n".format(p)
         for p in self.configs.iterate():
@@ -313,6 +338,11 @@ EndProject
         postsolution = '\r\n'
         for p in self.projects:
             u2 = "{" + str(p.uuid).upper() + "}"        
+            for p in self.configs.iterate():
+                postsolution += "\t\t{0}.Debug_d-{1}|x64.ActiveCfg = Debug_d-{1}|x64\r\n".format(u2, p)
+                postsolution += "\t\t{0}.Debug_d-{1}|x64.Build.0 = Debug_d-{1}|x64\r\n".format(u2, p)
+                postsolution += "\t\t{0}.Debug_d-{1}|x86.ActiveCfg = Debug_d-{1}|Win32\r\n".format(u2, p)
+                postsolution += "\t\t{0}.Debug_d-{1}|x86.Build.0 = Debug_d-{1}|Win32\r\n".format(u2, p)            
             for p in self.configs.iterate():
                 postsolution += "\t\t{0}.Debug-{1}|x64.ActiveCfg = Debug-{1}|x64\r\n".format(u2, p)
                 postsolution += "\t\t{0}.Debug-{1}|x64.Build.0 = Debug-{1}|x64\r\n".format(u2, p)
