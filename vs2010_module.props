@@ -5,6 +5,7 @@
     <EXTENSION_BASENAME>{0}</EXTENSION_BASENAME>
     <EXTENSION_FULLNAME Condition="$(Platform)=='Win32'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformShortName)</EXTENSION_FULLNAME>
     <EXTENSION_FULLNAME Condition="$(Platform)=='x64'">$(EXTENSION_BASENAME)_cp$(python_version)_$(PlatformName)</EXTENSION_FULLNAME>        
+    <UNDERSCORE_D Condition="$(Configuration.StartsWith('Debug_d'))">_d</UNDERSCORE_D>         
   </PropertyGroup>
   <PropertyGroup>
     <TargetName>$(EXTENSION_FULLNAME)$(UNDERSCORE_D)</TargetName>  
