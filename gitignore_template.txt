@@ -1,9 +1,11 @@
+__pycache__
 .vs/
 build/
 *.opendb
 *.db
 ipch/
 *.exp
+*.ilk
 *.iobj
 *.ipdb
 *.lib
