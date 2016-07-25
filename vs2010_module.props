@@ -14,7 +14,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>MODULE_NAME=$(TargetName);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNDERSCORE_D=$(UNDERSCORE_D);MODULE_NAME=$(EXTENSION_FULLNAME);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>  <ItemGroup>
     <BuildMacro Include="EXTENSION_BASENAME">

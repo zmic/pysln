@@ -8,12 +8,20 @@
 #	endif
 #endif
 
-#ifdef _DEBUG
-#define _DEBUG_WAS_DEFINED
-#undef _DEBUG
+#if !UNDERSCORE_D
+#   ifdef _DEBUG
+#   define DEBUG_WAS_DEFINED_00
+#   undef _DEBUG
+#   endif
 #endif
+
 #include <Python.h>
 #include <structmember.h>
-#ifdef _DEBUG_WAS_DEFINED
-#define _DEBUG 1
+
+#if !UNDERSCORE_D
+    #ifdef DEBUG_WAS_DEFINED_00
+    #define _DEBUG 1
+    #undef DEBUG_WAS_DEFINED_00
+    #endif
 #endif
+

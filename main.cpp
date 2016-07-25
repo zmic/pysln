@@ -7,13 +7,13 @@ PyMethodDef g_methods[] =
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define _STR(x) #x
-#define STR(x) _STR(x)
-#define MODULE_STRING STR(MODULE_NAME)
+#define STR_00(x) #x
+#define STR_0(x) STR_00(x)
+#define MODULE_STRING STR_0(MODULE_NAME)
 #define MODULE_DOC MODULE_STRING
-#define __INIT_FUNCTION(x) PyInit_##x
-#define _INIT_FUNCTION(x) __INIT_FUNCTION(x)
-#define INIT_FUNCTION _INIT_FUNCTION(MODULE_NAME)
+#define INIT_FUNCTION_00(x) PyInit_##x
+#define INIT_FUNCTION_0(x) INIT_FUNCTION_00(x)
+#define INIT_FUNCTION INIT_FUNCTION_0(MODULE_NAME)
 
 static struct PyModuleDef moduledef = {
     PyModuleDef_HEAD_INIT,
@@ -41,7 +41,9 @@ INIT_FUNCTION()
     //_CrtSetReportMode( _CRT_WARN, _CRTDBG_MODE_DEBUG | _CRTDBG_MODE_FILE );
     //_CrtSetReportFile( _CRT_WARN, _CRTDBG_FILE_STDERR );
 #endif
+#if !UNDERSCORE_D
     PyErr_Warn(PyExc_RuntimeWarning, "This is the debug build of "MODULE_STRING".pyd");
+#endif
 #endif
     PyObject * module = PyModule_Create(&moduledef);
     return module;

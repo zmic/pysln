@@ -13,7 +13,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>MODULE_NAME=$(TargetName);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="$(UNDERSCORE_D)=='_d'">UNDERSCORE_D=1;MODULE_NAME=$(EXTENSION_FULLNAME);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="$(UNDERSCORE_D)==''">UNDERSCORE_D=0;MODULE_NAME=$(EXTENSION_FULLNAME);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>  <ItemGroup>
     <BuildMacro Include="EXTENSION_BASENAME">
