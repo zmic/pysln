@@ -38,8 +38,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetExt>.pyd</TargetExt>
-    <IncludePath>$(python_install_folder)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(python_install_folder)\libs;$(LibraryPath)</LibraryPath>
+    <!-- $(python_install_folder)\PC in order to find pyconfig.h for custom builds of Python -->
+    <IncludePath>$(python_install_folder)\include;$(python_install_folder)\PC;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="$(Platform)=='Win32'">$(python_install_folder)\libs;$(python_install_folder)\PCbuild\win32;$(LibraryPath)</LibraryPath>    
+    <LibraryPath Condition="$(Platform)=='x64'">$(python_install_folder)\libs;$(python_install_folder)\PCbuild\amd64;$(LibraryPath)</LibraryPath>    
   </PropertyGroup>
   <ItemDefinitionGroup />
 </Project>
